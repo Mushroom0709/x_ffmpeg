@@ -1,4 +1,4 @@
-# 搭建基于nginx的rtmp服务端
+# 搭建rtmp服务端
 ##  准备环境
 1.  安装好的docker，并更换为国内源。[点击查看国内源教程](https://blog.csdn.net/weixin_45485719/article/details/106200988)
 2.  拉取ubuntu:18.04的镜像:
