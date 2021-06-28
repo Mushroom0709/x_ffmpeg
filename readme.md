@@ -10,4 +10,6 @@
     1.  [搭建rtmp服务器](./rtmp_pusher_1.0/搭建rtmp服务器.md):使用docker搭建一个rtmp服务器用于测试。
 
 ## 其他
-@xMUshroom
+1.  镜像地址:[国内Gitee](https://gitee.com/xmushroom/x_ffmpeg) / [全球最大同性交友平台Github](https://github.com/Mushroom0709/x_ffmpeg)
+
+#### @xMushroom
