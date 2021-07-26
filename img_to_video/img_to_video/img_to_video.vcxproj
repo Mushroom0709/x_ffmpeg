@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{97635454-18d1-49ed-9a7f-b75926d01229}</ProjectGuid>
-    <RootNamespace>rtmppusher10</RootNamespace>
+    <ProjectGuid>{f47608e6-2c86-4edf-b451-c41d8d4915ea}</ProjectGuid>
+    <RootNamespace>imgtovideo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\include;$(VC_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\lib;$(VC_LibraryPath_x64);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)..\third_party_library\ffmpeg-4.4-x64\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,17 +151,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="rtmp_pusher_1.0.cpp" />
-    <ClCompile Include="x_ffmpeg_delay_calculator.cpp" />
-    <ClCompile Include="x_ffmpeg_demultiplexer.cpp" />
-    <ClCompile Include="x_ffmpeg_ouput.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="x_ffmpeg_common.h" />
-    <ClInclude Include="x_ffmpeg_delay_calculator.h" />
-    <ClInclude Include="x_ffmpeg_demultiplexer.h" />
-    <ClInclude Include="x_ffmpeg_multiplexer.h" />
-    <ClInclude Include="x_ffmpeg_ouput.h" />
+    <ClCompile Include="img_to_video.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

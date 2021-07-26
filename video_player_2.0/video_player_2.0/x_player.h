@@ -1,6 +1,8 @@
 #ifndef _X_PLAYER_H_
 #define _X_PLAYER_H_
 
+#include <stdio.h>
+
 #include <Windows.h>
 
 #include <queue>
@@ -19,6 +21,8 @@
 
 //#define OPEN_CLONSE
 
+//#define SAVE_YUV_FILE
+#define YUV_FILE_NAME "./yuv420p.yuv"
 
 //#define SDL_IMAGE_SIZE_WDITH 1280
 //#define SDL_IMAGE_SIZE_HEIGHT 720
@@ -43,6 +47,8 @@ namespace xM
 	{
 	private:
 		bool run_flag_;
+	private:
+		FILE* save_fp_;
 	private:
 		HANDLE console_out_;
 	private:
@@ -87,6 +93,7 @@ namespace xM
 		bool initialize_ffmepg(std::string _file);
 		bool initialize_sdl2();
 		bool initialize_console();
+		bool initialize_file();
 
 		void work_function_read_data();
 

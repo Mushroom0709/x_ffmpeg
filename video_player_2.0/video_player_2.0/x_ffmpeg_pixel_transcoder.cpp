@@ -28,17 +28,34 @@ namespace x_ffmpeg
 
 		return true;
 	}
-	void PixelTranscoder::FillFrame(AVFrame*& _dst_frame,uint8_t*& _dst_buffer)
+
+	bool PixelTranscoder::AllocFrame(AVFrame*& _dst_frame)
 	{
+		int ret = 0;
 		_dst_frame = av_frame_alloc();
-		_dst_buffer = (uint8_t*)av_calloc(av_image_get_buffer_size(dst_fmt_, dst_wdith_, dst_height_, 1), sizeof(uint8_t));;
-		av_image_fill_arrays(_dst_frame->data, _dst_frame->linesize, _dst_buffer, dst_fmt_, dst_wdith_, dst_height_, 1);
+		if (_dst_frame == NULL)
+			return false;
+
+		_dst_frame->format = dst_fmt_;
+		_dst_frame->width = dst_wdith_;
+		_dst_frame->height = dst_height_;
+		ret = av_frame_get_buffer(_dst_frame, 0);
+		if (ret < 0) {
+			return false;
+		}
+
+		ret = av_frame_make_writable(_dst_frame);
+		if (ret < 0) {
+			return false;
+		}
+		return true;
 	}
-	void PixelTranscoder::FreeFrame(AVFrame*& _dst_frame, uint8_t*& _dst_buffer)
+	void PixelTranscoder::FreeFrame(AVFrame*& _dst_frame)
 	{
-		av_free(_dst_buffer);
 		av_frame_free(&_dst_frame);
+		_dst_frame = NULL;
 	}
+
 	bool PixelTranscoder::Scale(AVFrame* _src_frame, AVFrame* _dst_frame)
 	{
 		sws_scale(

@@ -47,5 +47,8 @@
     <ClInclude Include="x_ffmpeg_delay_calculator.h">
       <Filter>头文件\x_ffmpeg</Filter>
     </ClInclude>
+    <ClInclude Include="x_ffmpeg_multiplexer.h">
+      <Filter>头文件\x_ffmpeg</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

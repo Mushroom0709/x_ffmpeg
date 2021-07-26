@@ -40,6 +40,7 @@ namespace xM
 	xPlayer::xPlayer()
 	{
 		run_flag_ = false;
+		save_fp_ = NULL;
 
 		memset(&sdl_audio_spec_, 0, sizeof(SDL_AudioSpec));
 		sdl_window_ = NULL;
@@ -168,11 +169,18 @@ namespace xM
 
 		return true;
 	}
+	bool xPlayer::initialize_file()
+	{
+		fopen_s(&save_fp_, YUV_FILE_NAME, "wb+");
+		if (save_fp_ == NULL)
+			return false;
+		return true;
+	}
 
 	void xPlayer::work_function_read_data()
 	{
 		int cnt = 0;
-		while (run_flag_ && cnt < 5 && video_frames_.size() < 20)
+		while (run_flag_ && cnt < 5 && video_frames_.size() < 5)
 		{
 			if (true == demultiplexer_.GetPacket(packet_, media_type_, pkt_stream_index_, pkt_status_))
 			{
@@ -221,9 +229,8 @@ namespace xM
 
 	void xPlayer::work_function_display_sdl(AVFrame* _frame)
 	{
-		uint8_t* dst_buf = NULL;
 		AVFrame* dst = NULL;
-		sdl_pixel_transcoder_.FillFrame(dst, dst_buf);
+		sdl_pixel_transcoder_.AllocFrame(dst);
 
 		sdl_pixel_transcoder_.Scale(_frame, dst);
 
@@ -234,14 +241,21 @@ namespace xM
 		SDL_RenderClear(sdl_renderer_);
 		SDL_RenderCopy(sdl_renderer_, sdl_texture_, NULL, &sdl_rect_);
 		SDL_RenderPresent(sdl_renderer_);
-		sdl_pixel_transcoder_.FreeFrame(dst, dst_buf);
+
+#ifdef SAVE_YUV_FILE
+		fwrite(dst->data[0], _frame->linesize[0] * _frame->height, 1, save_fp_);
+		fwrite(dst->data[1], _frame->linesize[1] * _frame->height / 2, 1, save_fp_);
+		fwrite(dst->data[2], _frame->linesize[2] * _frame->height / 2, 1, save_fp_);
+		fflush(save_fp_);
+#endif
+
+		sdl_pixel_transcoder_.FreeFrame(dst);
 	}
 	void xPlayer::work_function_display_console(AVFrame* _frame)
 	{
 		const char* ascii_buf = " `'""^.,-*<>CO()l!][ivaLVPqohSmM$@#";
-		uint8_t* dst_buf = NULL;
 		AVFrame* dst = NULL;
-		console_pixel_transcoder_.FillFrame(dst, dst_buf);
+		console_pixel_transcoder_.AllocFrame(dst);
 
 		console_pixel_transcoder_.Scale(_frame, dst);
 		int buf_len = dst->width * dst->height;
@@ -265,7 +279,7 @@ namespace xM
 				&res_len);
 		}
 		free(console_buf);
-		console_pixel_transcoder_.FreeFrame(dst, dst_buf);
+		console_pixel_transcoder_.FreeFrame(dst);
 	}
 	void xPlayer::work_function_display()
 	{
@@ -302,6 +316,10 @@ namespace xM
 
 	bool xPlayer::Initialize(std::string _file)
 	{
+#ifdef SAVE_YUV_FILE
+		if (false == initialize_file())
+			return false;
+#endif
 		if (false == initialize_ffmepg(_file))
 			return false;
 #ifdef OPEN_CLONSE
@@ -385,6 +403,12 @@ namespace xM
 			av_frame_free(&video_frame_);
 		if (audio_frame_ != NULL)
 			av_frame_free(&audio_frame_);
+
+		if (save_fp_ != NULL)
+		{
+			fclose(save_fp_);
+			save_fp_ = NULL;
+		}
 
 		while (audio_frames_.size() > 0)
 		{

@@ -26,8 +26,8 @@ namespace x_ffmpeg
 	public:
 		bool Initialize(AVPixelFormat _src_fmt, int _src_h, int _src_w,
 			AVPixelFormat _dst_fmt, int _dst_h, int _dst_w);
-		void FillFrame(AVFrame*& _dst_frame, uint8_t*& _dst_buffer);
-		void FreeFrame(AVFrame*& _dst_frame, uint8_t*& _dst_buffer);
+		bool AllocFrame(AVFrame*& _dst_frame);
+		void FreeFrame(AVFrame*& _dst_frame);
 		bool Scale(AVFrame* _src_frame, AVFrame* _dst_frame);
 		void Destroy();
 	};
