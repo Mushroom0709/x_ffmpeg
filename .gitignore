@@ -15,15 +15,12 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
+#x64/
+#x86/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 [Ll]og/
-
-# Mandatory to upload
-!/third_party_library/
 
 # Visual Studio 2019 cache/options directory
 .vs/
