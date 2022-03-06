@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "encode_h264_demo", "encode_h264_demo\encode_h264_demo.vcxproj", "{26C69B38-5FBD-4A0C-AE56-D472DF356557}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Debug|x64.ActiveCfg = Debug|x64
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Debug|x64.Build.0 = Debug|x64
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Debug|x86.ActiveCfg = Debug|Win32
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Debug|x86.Build.0 = Debug|Win32
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Release|x64.ActiveCfg = Release|x64
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Release|x64.Build.0 = Release|x64
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Release|x86.ActiveCfg = Release|Win32
+		{26C69B38-5FBD-4A0C-AE56-D472DF356557}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD539D94-DD67-4728-BFD3-DEACC826E882}
+	EndGlobalSection
+EndGlobal

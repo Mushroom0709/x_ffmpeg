@@ -19,7 +19,7 @@
 #include "x_ffmpeg_sample_transcoder.h"
 #include "x_ffmpeg_audio_video_synchronization.h"
 
-//#define OPEN_CLONSE
+#define OPEN_CLONSE
 
 //#define SAVE_YUV_FILE
 #define YUV_FILE_NAME "./yuv420p.yuv"
@@ -27,7 +27,7 @@
 //#define SDL_IMAGE_SIZE_WDITH 1280
 //#define SDL_IMAGE_SIZE_HEIGHT 720
 
-#define SDL_IMAGE_ZOOM_FACTOR 0.7
+#define SDL_IMAGE_ZOOM_FACTOR 0.8
 #define CONSOLE_IMAGE_ZOOM_FACTOR 0.1
 
 //#define CONSOLE_IMAGE_SIZE_WDITH 158
